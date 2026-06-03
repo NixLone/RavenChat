@@ -1,0 +1,10 @@
+{
+  "name": "raven-chat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/static-contract.test.mjs",
+    "start": "python3 -m http.server 4173"
+  }
+}
