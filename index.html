@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Raven Chat — End-to-end encrypted</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Настройки Raven Chat">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true">R</div>
+          <div>
+            <p class="eyebrow">Raven Chat</p>
+            <h1>Только защищённый чат</h1>
+          </div>
+        </div>
+
+        <section class="panel auth-panel" aria-labelledby="auth-title">
+          <div class="panel__heading">
+            <span class="status-dot"></span>
+            <h2 id="auth-title">Вход</h2>
+          </div>
+          <form id="auth-form" class="auth-form">
+            <label>
+              Имя
+              <input id="display-name" name="displayName" autocomplete="name" placeholder="Например, Raven" required />
+            </label>
+            <label>
+              Почта
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="raven@example.com" required />
+            </label>
+            <div class="auth-form__row">
+              <label>
+                Код с почты
+                <input id="email-code" name="emailCode" inputmode="numeric" pattern="[0-9]{6}" placeholder="000000" />
+              </label>
+              <label>
+                или пароль
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+              </label>
+            </div>
+            <p class="hint">В прототипе код генерируется локально для демонстрации сценария входа.</p>
+            <div class="button-row">
+              <button type="button" id="send-code" class="button button--ghost">Получить код</button>
+              <button type="submit" class="button button--primary">Войти</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel security-panel" aria-labelledby="security-title">
+          <div class="panel__heading">
+            <span class="lock-icon" aria-hidden="true">◇</span>
+            <h2 id="security-title">E2EE</h2>
+          </div>
+          <ul class="feature-list">
+            <li>Сообщения шифруются в браузере перед сохранением.</li>
+            <li>Срок хранения — минимум 180 дней.</li>
+            <li>Фото и видео отключены, доступен только текст и голос.</li>
+            <li>Экспорт всей переписки в HTML-файл.</li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="chat" aria-label="End-to-end encrypted чат">
+        <header class="chat__header">
+          <div>
+            <p class="eyebrow">End-to-end encrypted</p>
+            <h2>Raven secure room</h2>
+          </div>
+          <div class="header-actions">
+            <span id="retention-badge" class="badge">Хранение 180 дней</span>
+            <button id="export-html" class="button button--ghost">Экспорт HTML</button>
+          </div>
+        </header>
+
+        <section id="message-list" class="message-list" aria-live="polite" aria-label="Сообщения">
+          <div class="empty-state">
+            <div class="empty-state__icon" aria-hidden="true">☾</div>
+            <h3>Темная комната Raven готова</h3>
+            <p>Войдите по почте, коду или паролю и отправьте первое зашифрованное сообщение.</p>
+          </div>
+        </section>
+
+        <form id="message-form" class="composer" aria-label="Отправка сообщения">
+          <label class="sr-only" for="message-input">Сообщение</label>
+          <textarea id="message-input" placeholder="Написать защищённое сообщение…" rows="1" disabled></textarea>
+          <div class="composer__actions">
+            <button type="button" id="record-voice" class="button button--voice" disabled>Голосовое</button>
+            <button type="submit" class="button button--primary" disabled>Отправить</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
